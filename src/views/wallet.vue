@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <router-view />
+    <div>钱包app</div>
   </div>
 </template>
 <style>
