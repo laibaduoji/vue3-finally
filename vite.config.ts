@@ -15,7 +15,5 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
   },
-  build: {
-    base: "./", // 设置相对路径
-  },
+  base: "./",
 });
