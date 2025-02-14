@@ -3,3 +3,156 @@
 // 获取地址
 // 切换网络;
 // 监听状态;
+
+import {
+	createAppKit,
+	useAppKit,
+	useAppKitProvider,
+	useAppKitAccount,
+	useDisconnect,
+} from "@reown/appkit/vue";
+import { EthersAdapter } from "@reown/appkit-adapter-ethers";
+import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
+
+import * as aa from "@reown/appkit/networks";
+console.log(aa);
+
+import { BrowserProvider, Contract, formatUnits } from "ethers";
+
+// 1. Get projectId from https://cloud.reown.com
+const projectId = "a4def443738791ced991a65b128aca9a";
+
+// 2. Create your application's metadata object
+const metadata = {
+	name: "AEON_QR_PAY",
+	description: "AppKit Example",
+	url: "https://reown.com/appkit", // origin must match your domain & subdomain
+	icons: ["https://assets.reown.com/reown-profile-pic.png"],
+};
+
+// 3. Create a AppKit instance
+const modal = createAppKit({
+	adapters: [new EthersAdapter()],
+	networks: [mainnet, bsc, bscTestnet],
+	defaultNetwork: mainnet,
+	metadata,
+	projectId,
+	features: {
+		analytics: false, // Optional - defaults to your Cloud configuration
+		email: false,
+		socials: false,
+		emailShowWallets: false,
+		swap: false,
+	},
+	allWallets: "HIDE",
+
+	includeWalletIds: [
+		"38f5d18bd8522c244bdd70cb4a68e0e718865155811c043f052fb9f1c51de662", // bitget
+		"c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96", // metamask
+	],
+	excludeWalletIds: [
+		// "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
+	],
+	enableWalletConnect: false,
+});
+
+export const connectWallet = () => {
+	const { open } = useAppKit();
+	open({
+		view: "Connect",
+	});
+};
+export const disconnect = () => {
+	const { disconnect } = useDisconnect();
+	disconnect();
+	// todo 清空钱包信息;
+};
+
+export function getAddress() {
+	const result = modal.getAddress();
+	console.log("getAddress", result);
+	return result;
+}
+export function getError() {
+	const result = modal.getError();
+	console.log("getError", result);
+	return result;
+}
+export function getChainId() {
+	const result = modal.getChainId();
+	console.log("getChainId", result);
+	return result;
+}
+export function getIsConnected() {
+	const result = modal.getIsConnected();
+	console.log("getIsConnected", result);
+	return result;
+}
+export function getWalletProvider() {
+	const result = modal.getWalletProvider();
+	console.log("getWalletProvider", result);
+	return result;
+}
+export function getWalletProviderType() {
+	const result = modal.getWalletProviderType();
+	console.log("getWalletProviderType", result);
+	return result;
+}
+
+modal.subscribeAccount((account) => {
+	console.log("account", account);
+});
+modal.subscribeNetwork((network) => {
+	console.log("network", network);
+});
+
+/*
+
+modal.subscribeProviders((providers) => {
+	console.log("providers", providers);
+});
+
+modal.subscribeWalletInfo((walletInfo) => {
+	console.log("walletInfo", walletInfo);
+});
+modal.subscribeCaipNetworkChange((network) => {
+	console.log("network", network);
+});
+modal.subscribeEvents((event) => {
+	console.log("event", event);
+});
+modal.subscribeShouldUpdateToAddress((shouldUpdateToAddress) => {
+	console.log("shouldUpdateToAddress", shouldUpdateToAddress);
+});
+modal.subscribeTheme((theme) => {
+	console.log("theme", theme);
+});
+modal.subscribeState((state) => {
+	console.log("state", state);
+});
+*/
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
