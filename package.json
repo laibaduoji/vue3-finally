@@ -15,10 +15,10 @@
   "dependencies": {
     "@coinbase/wallet-sdk": "^4.3.0",
     "@moralisweb3/common-evm-utils": "^2.27.2",
-    "@reown/appkit": "^1.6.5",
-    "@reown/appkit-adapter-ethers5": "^1.6.5",
+    "@reown/appkit": "^1.6.8",
+    "@reown/appkit-adapter-ethers": "^1.6.8",
     "axios": "^1.7.9",
-    "ethers": "5.7.2",
+    "ethers": "^6.13.5",
     "moralis": "^2.27.2",
     "pinia": "^2.3.0",
     "vue": "^3.5.13",
