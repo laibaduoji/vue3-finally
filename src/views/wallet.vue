@@ -30,11 +30,6 @@ createAppKit({
 // 4. Use modal composable
 const modal = useAppKit();
 console.log(modal);
-function getProvider() {
-  const { walletProvider } = useAppKitProvider("eip155");
-  const ethersProvider = new BrowserProvider(walletProvider);
-  console.log(ethersProvider);
-}
 </script>
 
 <template>
@@ -42,8 +37,6 @@ function getProvider() {
     <appkit-button />
     <appkit-connect-button />
     <appkit-network-button />
-
-    <button @click="getProvider">getProvider</button>
   </div>
 </template>
 <style>
