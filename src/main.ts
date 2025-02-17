@@ -6,7 +6,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 if (typeof global === "undefined") {
-	window.global = window;
+  window.global = window;
 }
 
 const app = createApp(App);
