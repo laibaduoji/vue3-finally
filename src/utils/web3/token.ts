@@ -1,7 +1,7 @@
 // 获取token 列表; 余额;
 import ABI from "../abis/IERC20.json";
-import { Contract, ethers } from "ethers";
-import { getWalletProvider } from "./wallet.ts";
+import { Contract, ethers, ZeroAddress } from "ethers";
+import { getWalletProvider, getWalletProviderWithSigner } from "./wallet.ts";
 import { useWalletStore } from "@/stores/useWalletStore";
 import type { Address } from "@reown/appkit-adapter-ethers";
 const Wallet = useWalletStore();
@@ -12,8 +12,7 @@ function getTokenContract(_tokenAddress: Address) {
 }
 
 async function getTokenContractWithSigner(_tokenAddress: Address) {
-  const ethersProvider = getWalletProvider();
-  const signer = await ethersProvider.getSigner();
+  const signer = await getWalletProviderWithSigner();
   return new Contract(_tokenAddress, ABI, signer);
 }
 
@@ -71,7 +70,18 @@ export async function getBalancesOf(
   return balances;
 }
 
-export async function tokenTransfer(
+async function _sendTransaction(_toAddress: Address, _amount: BigInt) {
+  const signer = await getWalletProviderWithSigner();
+  try {
+    await signer.sendTransaction({
+      to: _toAddress,
+      value: _amount.toString(),
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+async function _transfer(
   _tokenAddress: Address,
   _toAddress: Address,
   _amount: BigInt
@@ -80,56 +90,28 @@ export async function tokenTransfer(
   try {
     const result = await TokenContract.transfer(_toAddress, _amount);
     console.log("tokenTransfer", result);
-    return result;
+    const { TransactionHash } = result;
+    return TransactionHash;
   } catch (e) {
     console.error("tokenTransfer Error", e);
-    // console.dir(e);
-    alert(e.shortMessage);
+    const TokenBalance = await getBalanceOf(_tokenAddress);
+    if (_amount > TokenBalance) {
+      alert("余额不足");
+    } else {
+      alert(e.shortMessage);
+    }
     return false;
   }
 }
 
-export const tokensList = {
-  "97": [
-    {
-      contractAddress: "0xfE84331e3193076C6a369d2B515A4de015A0A580",
-      symbol: "A21",
-    },
-    {
-      contractAddress: "0xe3A67406D32b8742D9a1C0A39E6620e76c0F5bA9",
-      symbol: "ADA",
-    },
-    {
-      contractAddress: "0x80035c424d02A598D2e8aE44DAa3CAd0E5015bEe",
-      symbol: "Airdrop",
-    },
-    {
-      contractAddress: "0x1e12F7FD1675449b5f8d0bEd5d6dbca87ee50718",
-      symbol: "BSCToken1",
-    },
-  ],
-  "56": [
-    {
-      contractAddress: "0x55d398326f99059ff775485246999027b3197955",
-      symbol: " BSC-USD",
-    },
-    {
-      contractAddress: "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
-      symbol: "USDC",
-    },
-    {
-      contractAddress: "0x3b4DEB27A46e746776a661eCf523c42ED0400d54",
-      symbol: "YTS",
-    },
-    {
-      contractAddress: "0x3b4DEB27A46e746776a661eCf523c42ED0400d53",
-      symbol: "YTS 假地址",
-    },
-  ],
-  "1": [],
-};
-
-export const ToAddress = [
-  "0x11fD826Bd11cc51f82b8F5a53dbe8787d50d89df",
-  "0x38007a479c405E66968E293fc902cFbce971B526",
-];
+export async function tokenTransfer(
+  _tokenAddress: Address,
+  _toAddress: Address,
+  _amount: BigInt
+) {
+  if (_tokenAddress === ZeroAddress) {
+    return await _sendTransaction(_toAddress, _amount);
+  } else {
+    return await _transfer(_tokenAddress, _toAddress, _amount);
+  }
+}

@@ -89,6 +89,12 @@ export function getWalletProvider() {
   return ethersProvider;
 }
 
+export async function getWalletProviderWithSigner() {
+  const ethersProvider = getWalletProvider();
+  const signer = await ethersProvider.getSigner();
+  return signer;
+}
+
 export function switchNetwork(network: any) {
   modal.switchNetwork(network);
 }

@@ -10,11 +10,12 @@ import {
 } from "@/utils/web3/wallet.ts";
 import {
   getBalanceOf,
-  tokensList,
   getBalancesOf,
   tokenTransfer,
-  ToAddress,
 } from "@/utils/web3/token.ts";
+
+import { tokensList, ToAddress } from "@/utils/common/common.ts";
+
 import { useWalletStore } from "@/stores/useWalletStore";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 
@@ -58,8 +59,10 @@ async function getBalancesOfFun() {
           )
         "
       >
-        tokenTransfer</button
-      ><button
+        tokenTransfer
+      </button>
+
+      <button
         @click="
           tokenTransfer(
             tokensList[Wallet.ChainId][0].contractAddress,
@@ -69,6 +72,18 @@ async function getBalancesOfFun() {
         "
       >
         tokenTransfer
+      </button>
+
+      <button
+        @click="
+          tokenTransfer(
+            '0x0000000000000000000000000000000000000000',
+            ToAddress[0],
+            100000000000000n
+          )
+        "
+      >
+        tokenTransfer平台币
       </button>
 
       <div>address: {{ Wallet.Address }}</div>
