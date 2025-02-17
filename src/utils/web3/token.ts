@@ -1,9 +1,14 @@
 // 获取token 列表; 余额;
 import ABI from "../abis/IERC20.json";
 import { Contract, ethers, ZeroAddress } from "ethers";
-import { getWalletProvider, getWalletProviderWithSigner } from "./wallet.ts";
+import {
+  getWalletProvider,
+  getWalletProviderWithSigner,
+  getBalance,
+} from "./wallet.ts";
 import { useWalletStore } from "@/stores/useWalletStore";
 import type { Address } from "@reown/appkit-adapter-ethers";
+import { ErrorMessage } from "@/utils/common/common.ts";
 const Wallet = useWalletStore();
 
 function getTokenContract(_tokenAddress: Address) {
@@ -70,15 +75,35 @@ export async function getBalancesOf(
   return balances;
 }
 
-async function _sendTransaction(_toAddress: Address, _amount: BigInt) {
+async function _sendTransaction(_toAddress: Address, _amount: bigint) {
   const signer = await getWalletProviderWithSigner();
   try {
-    await signer.sendTransaction({
+    const result = await signer.sendTransaction({
       to: _toAddress,
       value: _amount.toString(),
     });
+    console.log("12312312");
+    console.log(result);
+    return {
+      success: true,
+      transactionHash: result.hash,
+    };
   } catch (e) {
-    console.log(e);
+    console.dir(e);
+    const Balance = await getBalance();
+    if (BigInt(Balance) <= BigInt(_amount)) {
+      return {
+        success: false,
+        transactionHash: "0x",
+        shortMessage: ErrorMessage.BalanceNotEnough,
+      };
+    } else {
+      return {
+        success: false,
+        transactionHash: "0x",
+        shortMessage: e.shortMessage || ErrorMessage.unknownError,
+      };
+    }
   }
 }
 async function _transfer(
@@ -89,18 +114,26 @@ async function _transfer(
   const TokenContract = await getTokenContractWithSigner(_tokenAddress);
   try {
     const result = await TokenContract.transfer(_toAddress, _amount);
-    console.log("tokenTransfer", result);
-    const { TransactionHash } = result;
-    return TransactionHash;
+    return {
+      success: true,
+      transactionHash: result.hash,
+    };
   } catch (e) {
-    console.error("tokenTransfer Error", e);
+    console.dir(e);
     const TokenBalance = await getBalanceOf(_tokenAddress);
-    if (_amount > TokenBalance) {
-      alert("余额不足");
+    if (TokenBalance < _amount) {
+      return {
+        success: false,
+        transactionHash: "0x",
+        shortMessage: ErrorMessage.BalanceNotEnough,
+      };
     } else {
-      alert(e.shortMessage);
+      return {
+        success: false,
+        transactionHash: "0x",
+        shortMessage: e.shortMessage || ErrorMessage.unknownError,
+      };
     }
-    return false;
   }
 }
 
@@ -109,9 +142,19 @@ export async function tokenTransfer(
   _toAddress: Address,
   _amount: BigInt
 ) {
+  let result = {};
   if (_tokenAddress === ZeroAddress) {
-    return await _sendTransaction(_toAddress, _amount);
+    result = await _sendTransaction(_toAddress, _amount);
   } else {
-    return await _transfer(_tokenAddress, _toAddress, _amount);
+    result = await _transfer(_tokenAddress, _toAddress, _amount);
+  }
+  // return result;
+
+  if (result.success) {
+    console.log(result.transactionHash);
+    alert(result.transactionHash);
+  } else {
+    console.log(result.shortMessage);
+    alert(result.shortMessage);
   }
 }

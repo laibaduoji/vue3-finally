@@ -98,9 +98,9 @@ export async function getWalletProviderWithSigner() {
 export function switchNetwork(network: any) {
   modal.switchNetwork(network);
 }
-export async function getBalance(_address: string) {
+export async function getBalance(_UserAddress = Wallet.Address) {
   try {
-    const result = await getWalletProvider().getBalance(_address);
+    const result = await getWalletProvider().getBalance(_UserAddress);
     console.log("getBalance", result, ethers.formatEther(result));
     return result;
   } catch (e) {

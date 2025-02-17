@@ -71,7 +71,7 @@ async function getBalancesOfFun() {
           )
         "
       >
-        tokenTransfer
+        tokenTransfer(more than balance)
       </button>
 
       <button
@@ -79,11 +79,22 @@ async function getBalancesOfFun() {
           tokenTransfer(
             '0x0000000000000000000000000000000000000000',
             ToAddress[0],
-            100000000000000n
+            100000000n
           )
         "
       >
         tokenTransfer平台币
+      </button>
+      <button
+        @click="
+          tokenTransfer(
+            '0x0000000000000000000000000000000000000000',
+            ToAddress[0],
+            100000000000000000000000000n
+          )
+        "
+      >
+        tokenTransfer平台币(more than balance)
       </button>
 
       <div>address: {{ Wallet.Address }}</div>

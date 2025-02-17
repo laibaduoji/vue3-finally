@@ -45,3 +45,8 @@ export const ToAddress = [
   "0x11fD826Bd11cc51f82b8F5a53dbe8787d50d89df",
   "0x38007a479c405E66968E293fc902cFbce971B526",
 ];
+
+export const ErrorMessage = {
+  BalanceNotEnough: "transfer amount exceeds balance",
+  unknownError: "unknown error",
+};
