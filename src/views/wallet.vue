@@ -8,12 +8,27 @@ import {
   getWalletProvider,
   getBalance,
 } from "@/utils/web3/wallet.ts";
-import { getBalanceOf, tokensList, getBalancesOf } from "@/utils/web3/token.ts";
+import {
+  getBalanceOf,
+  tokensList,
+  getBalancesOf,
+  tokenTransfer,
+  ToAddress,
+} from "@/utils/web3/token.ts";
 import { useWalletStore } from "@/stores/useWalletStore";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 
 const Wallet = useWalletStore();
 console.log(Wallet);
+
+const tokensBalances = ref([]);
+async function getBalancesOfFun() {
+  tokensBalances.value = await getBalancesOf(
+    tokensList[Wallet.ChainId].map((_item) => {
+      return _item.contractAddress;
+    })
+  );
+}
 </script>
 
 <template>
@@ -32,22 +47,39 @@ console.log(Wallet);
       >
         getBalanceOf
       </button>
+      <button @click="getBalancesOfFun">getBalancesOf</button>
+
       <button
         @click="
-          getBalancesOf(
-            tokensList[Wallet.ChainId].map((_item) => {
-              return _item.contractAddress;
-            })
+          tokenTransfer(
+            tokensList[Wallet.ChainId][0].contractAddress,
+            ToAddress[0],
+            1000000000000000000n
           )
         "
       >
-        getBalancesOf
+        tokenTransfer</button
+      ><button
+        @click="
+          tokenTransfer(
+            tokensList[Wallet.ChainId][0].contractAddress,
+            ToAddress[0],
+            100000000000000000000000000000000n
+          )
+        "
+      >
+        tokenTransfer
       </button>
 
       <div>address: {{ Wallet.Address }}</div>
       <div>isConnected: {{ Wallet.IsConnected }}</div>
       <div>chainId: {{ Wallet.ChainId }}</div>
       <div>Balance: {{ Wallet.Balance }}</div>
+      <div>
+        <pre>
+          {{ JSON.stringify(tokensBalances, null, 4) }}
+        </pre>
+      </div>
     </template>
   </div>
 </template>

@@ -11,6 +11,12 @@ function getTokenContract(_tokenAddress: Address) {
   return new Contract(_tokenAddress, ABI, ethersProvider);
 }
 
+async function getTokenContractWithSigner(_tokenAddress: Address) {
+  const ethersProvider = getWalletProvider();
+  const signer = await ethersProvider.getSigner();
+  return new Contract(_tokenAddress, ABI, signer);
+}
+
 /**
  * 查询单个token的余额
  * @param _tokenAddress string 合约地址;
@@ -65,6 +71,24 @@ export async function getBalancesOf(
   return balances;
 }
 
+export async function tokenTransfer(
+  _tokenAddress: Address,
+  _toAddress: Address,
+  _amount: BigInt
+) {
+  const TokenContract = await getTokenContractWithSigner(_tokenAddress);
+  try {
+    const result = await TokenContract.transfer(_toAddress, _amount);
+    console.log("tokenTransfer", result);
+    return result;
+  } catch (e) {
+    console.error("tokenTransfer Error", e);
+    // console.dir(e);
+    alert(e.shortMessage);
+    return false;
+  }
+}
+
 export const tokensList = {
   "97": [
     {
@@ -104,3 +128,8 @@ export const tokensList = {
   ],
   "1": [],
 };
+
+export const ToAddress = [
+  "0x11fD826Bd11cc51f82b8F5a53dbe8787d50d89df",
+  "0x38007a479c405E66968E293fc902cFbce971B526",
+];
