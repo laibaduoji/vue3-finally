@@ -8,6 +8,7 @@ import {
   getWalletProvider,
   getBalance,
 } from "@/utils/web3/wallet.ts";
+import { getBalanceOf, tokensList, getBalancesOf } from "@/utils/web3/token.ts";
 import { useWalletStore } from "@/stores/useWalletStore";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 
@@ -26,6 +27,22 @@ console.log(Wallet);
       <button @click="getBalance(Wallet.Address)">获取余额</button>
       <button @click="getWalletProvider">getWalletProvider</button>
       <button @click="getIsConnectedState">获取链接状态</button>
+      <button
+        @click="getBalanceOf(tokensList[Wallet.ChainId][0].contractAddress)"
+      >
+        getBalanceOf
+      </button>
+      <button
+        @click="
+          getBalancesOf(
+            tokensList[Wallet.ChainId].map((_item) => {
+              return _item.contractAddress;
+            })
+          )
+        "
+      >
+        getBalancesOf
+      </button>
 
       <div>address: {{ Wallet.Address }}</div>
       <div>isConnected: {{ Wallet.IsConnected }}</div>

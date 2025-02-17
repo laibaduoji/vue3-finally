@@ -85,7 +85,7 @@ export function getIsConnectedState() {
 export function getWalletProvider() {
   const _walletProvider = modal.getWalletProvider();
   const ethersProvider = new BrowserProvider(_walletProvider);
-  console.log("getWalletProvider", ethersProvider);
+  // console.log("getWalletProvider", ethersProvider);
   return ethersProvider;
 }
 
