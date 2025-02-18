@@ -5,7 +5,8 @@ import { useWalletTonStore } from "@/stores/useWalletTonStore";
 const WalletTon = useWalletTonStore();
 const tonConnectUI = new TonConnectUI({
 	// manifestUrl: "/public/tonconnect-manifest.json",
-	manifestUrl: "http://localhost:5173/tonconnect-manifest.json",
+	manifestUrl:
+		"https://laibaduoji.github.io/vue3-finally/dist/tonconnect-manifest.json",
 });
 
 console.log(tonConnectUI);
