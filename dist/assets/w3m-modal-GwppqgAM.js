@@ -1,4 +1,4 @@
-import{ax as U,ay as I,az as v,aA as i,aB as n,aC as k,aD as C,aE as u,aF as T,aG as h,aH as N,U as L,i as K,aI as O,aJ as R,aK as z,aL as M,aM as p,c as P,aN as $}from"./wallet-CO_4KtX9.js";import"./browser-DADm3Ud_.js";import"./index-DW2ITK8k.js";const W=U`
+import{ax as U,ay as I,az as v,aA as i,aB as n,aC as k,aD as C,aE as u,aF as T,aG as h,aH as N,U as L,i as K,aI as O,aJ as R,aK as z,aL as M,aM as p,c as P,aN as $}from"./wallet-CXJ_uMG5.js";import"./browser-DADm3Ud_.js";import"./index-B2VAzdQj.js";const W=U`
   :host {
     z-index: var(--w3m-z-index);
     display: block;
