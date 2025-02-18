@@ -3,12 +3,10 @@ import { ref } from "vue";
 import {
   connectWallet,
   disconnect,
-  getIsConnectedState,
   switchNetwork,
-  getWalletProvider,
-  getBalance,
 } from "@/utils/web3/wallet.ts";
 import {
+  getBalance,
   getBalanceOf,
   getBalancesOf,
   tokenTransfer,
@@ -19,8 +17,22 @@ import { tokensList, ToAddress } from "@/utils/common/common.ts";
 import { useWalletStore } from "@/stores/useWalletStore";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 
+import { useWallet } from "@/composables/useWallet";
 const Wallet = useWalletStore();
 console.log(Wallet);
+
+useWallet(async ({ IsConnected, Address, ChainId }) => {
+  console.log(`%c${"useWallet"}`, "font-size:30px;color:#aa5ff0");
+  // console.log(IsConnected);
+  // console.log(Address);
+  // console.log(ChainId);
+  if (IsConnected) {
+    const balance = await getBalance();
+    Wallet.setBalacne(balance);
+  } else {
+    // 处理断开链接的逻辑
+  }
+});
 
 const tokensBalances = ref([]);
 async function getBalancesOfFun() {
@@ -41,8 +53,6 @@ async function getBalancesOfFun() {
       <button @click="switchNetwork(bsc)">切换网络bsc</button>
       <button @click="switchNetwork(bscTestnet)">切换网络bscTestnet</button>
       <button @click="getBalance(Wallet.Address)">获取余额</button>
-      <button @click="getWalletProvider">getWalletProvider</button>
-      <button @click="getIsConnectedState">获取链接状态</button>
       <button
         @click="getBalanceOf(tokensList[Wallet.ChainId][0].contractAddress)"
       >

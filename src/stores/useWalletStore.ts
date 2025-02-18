@@ -1,6 +1,5 @@
-import { ref, computed, watchEffect } from "vue";
+import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { getBalance } from "@/utils/web3/wallet";
 
 export const useWalletStore = defineStore("wallet", () => {
   const AccountInfo = ref({});
@@ -22,19 +21,9 @@ export const useWalletStore = defineStore("wallet", () => {
     return ChainInfo.value.chainId;
   });
   const Balance = ref(BigInt(0));
-
-  watchEffect(async () => {
-    const isConnected = IsConnected.value;
-    const address = Address.value;
-    const _chainId = ChainId.value;
-    if (isConnected) {
-      const balance = await getBalance(address);
-      Balance.value = balance;
-    } else {
-      Balance.value = BigInt(0);
-    }
-  });
-
+  function setBalacne(data: any) {
+    Balance.value = data;
+  }
   return {
     AccountInfo,
     setAccountInfo,
@@ -44,6 +33,7 @@ export const useWalletStore = defineStore("wallet", () => {
     ChainId,
     IsConnected,
     Balance,
+    setBalacne,
   };
 });
 

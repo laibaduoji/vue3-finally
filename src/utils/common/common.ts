@@ -1,6 +1,3 @@
-import { ZeroAddress } from "ethers";
-console.log("ethers", ZeroAddress);
-
 export const tokensList = {
   "97": [
     {

@@ -1,17 +1,7 @@
-// 链接钱包
-// 断开链接
-// 获取地址
-// 切换网络;
-// 监听状态;
-
 import { createAppKit, useAppKit, useDisconnect } from "@reown/appkit/vue";
 import { EthersAdapter } from "@reown/appkit-adapter-ethers";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 import { BrowserProvider, ethers } from "ethers";
-console.log(ethers);
-
-import * as aa from "@reown/appkit/networks";
-console.log(aa);
 
 import { useWalletStore } from "@/stores/useWalletStore";
 
@@ -66,7 +56,7 @@ export const disconnect = () => {
 };
 
 console.log({ modal });
-export function getAddress() {
+/*export function getAddress() {
   const result = modal.getAddress();
   console.log("getAddress", result);
   return result;
@@ -75,7 +65,7 @@ export function getChainId() {
   const result = modal.getChainId();
   console.log("getChainId", result);
   return result;
-}
+}*/
 export function getIsConnectedState() {
   const result = modal.getIsConnectedState();
   console.log("getIsConnectedState", result);
@@ -98,24 +88,10 @@ export async function getWalletProviderWithSigner() {
 export function switchNetwork(network: any) {
   modal.switchNetwork(network);
 }
-export async function getBalance(_UserAddress = Wallet.Address) {
-  try {
-    const result = await getWalletProvider().getBalance(_UserAddress);
-    console.log("getBalance", result, ethers.formatEther(result));
-    return result;
-  } catch (e) {
-    console.error("getBalance Error", e);
-    return BigInt(0);
-  }
-}
 
 modal.subscribeAccount((account) => {
-  // 更新账户信息
-  // console.log("更新账户信息");
   Wallet.setAccountInfo(account);
 });
 modal.subscribeNetwork((chain) => {
-  // 更新网络信息
-  // console.log("更新网络信息");
   Wallet.setChainInfo(chain);
 });

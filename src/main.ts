@@ -9,6 +9,10 @@ if (typeof global === "undefined") {
   window.global = window;
 }
 
+window.WalletUpate = function () {
+  //
+};
+
 const app = createApp(App);
 
 app.use(createPinia());
