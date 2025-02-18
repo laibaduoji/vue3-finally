@@ -4,16 +4,17 @@ import {
   connectWallet,
   disconnect,
   switchNetwork,
-} from "@/utils/web3/wallet.ts";
+} from "@/web3/evm/utils/wallet.ts";
 import {
   getBalance,
   getBalanceOf,
   getBalancesOf,
   tokenTransfer,
-} from "@/utils/web3/token.ts";
+} from "@/web3/evm/utils//token.ts";
 
-import { tokensList, ToAddress } from "@/utils/common/common.ts";
+import { tokensList, ToAddress } from "@/web3/evm/common/web3Config.ts";
 
+// import { useWalletStore } from "@/store/index";
 import { useWalletStore } from "@/stores/useWalletStore";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 
@@ -29,6 +30,7 @@ useWallet(async ({ IsConnected, Address, ChainId }) => {
   if (IsConnected) {
     const balance = await getBalance();
     Wallet.setBalacne(balance);
+    getBalancesOfFun();
   } else {
     // 处理断开链接的逻辑
   }
@@ -36,11 +38,11 @@ useWallet(async ({ IsConnected, Address, ChainId }) => {
 
 const tokensBalances = ref([]);
 async function getBalancesOfFun() {
-  tokensBalances.value = await getBalancesOf(
-    tokensList[Wallet.ChainId].map((_item) => {
-      return _item.contractAddress;
-    })
-  );
+  const tokensAddress = tokensList[Wallet.ChainId].map((_item) => {
+    return _item.contractAddress;
+  });
+  console.log({ tokensAddress });
+  tokensBalances.value = await getBalancesOf(tokensAddress);
 }
 </script>
 

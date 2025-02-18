@@ -2,9 +2,10 @@
 import ABI from "../abis/IERC20.json";
 import { Contract, ethers, ZeroAddress } from "ethers";
 import { getWalletProvider, getWalletProviderWithSigner } from "./wallet.ts";
-import { useWalletStore } from "@/stores/useWalletStore";
+// import { useWalletStore } from "@/store/index";
+import { useWalletStore } from "@/stores/useWalletStore.ts";
 import type { Address } from "@reown/appkit-adapter-ethers";
-import { ErrorMessage } from "@/utils/common/common.ts";
+import { ErrorMessage } from "@/web3/evm/common/web3Config.ts";
 const Wallet = useWalletStore();
 
 function _getTokenContract(_tokenAddress: Address) {

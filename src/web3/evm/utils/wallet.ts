@@ -3,7 +3,8 @@ import { EthersAdapter } from "@reown/appkit-adapter-ethers";
 import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
 import { BrowserProvider, ethers } from "ethers";
 
-import { useWalletStore } from "@/stores/useWalletStore";
+// import { useWalletStore } from "@/store/index";
+import { useWalletStore } from "@/stores/useWalletStore.ts";
 
 const Wallet = useWalletStore();
 // 1. Get projectId from https://cloud.reown.com
@@ -11,10 +12,10 @@ const projectId = "a4def443738791ced991a65b128aca9a";
 
 // 2. Create your application's metadata object
 const metadata = {
-  name: "AEON_QR_PAY",
+  name: "AEON QR PAY",
   description: "AppKit Example",
-  url: "https://reown.com/appkit", // origin must match your domain & subdomain
-  icons: ["https://assets.reown.com/reown-profile-pic.png"],
+  url: "https://qr.cryptogo.com/", // origin must match your domain & subdomain
+  icons: ["https://qr.cryptogo.com/favicon1.ico"],
 };
 
 // 3. Create a AppKit instance
@@ -35,10 +36,10 @@ const modal = createAppKit({
 
   includeWalletIds: [
     "38f5d18bd8522c244bdd70cb4a68e0e718865155811c043f052fb9f1c51de662", // bitget
-    "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96", // metamask
+    // "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96", // metamask
   ],
   excludeWalletIds: [
-    // "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
+    "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
   ],
   enableWalletConnect: false,
 });

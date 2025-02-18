@@ -36,7 +36,3 @@ export const useWalletStore = defineStore("wallet", () => {
     setBalacne,
   };
 });
-
-/* if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useWalletStore, import.meta.hot));
-} */

@@ -30,10 +30,10 @@ export const tokensList = {
       contractAddress: "0x3b4DEB27A46e746776a661eCf523c42ED0400d54",
       symbol: "YTS",
     },
-    {
+    /* {
       contractAddress: "0x3b4DEB27A46e746776a661eCf523c42ED0400d53",
       symbol: "YTS 假地址",
-    },
+    },*/
   ],
   "1": [],
 };

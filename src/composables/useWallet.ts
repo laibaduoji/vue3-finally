@@ -1,4 +1,5 @@
-import { useWalletStore } from "@/stores/useWalletStore";
+// import { useWalletStore } from "@/store/index";
+import { useWalletStore } from "@/stores/useWalletStore.ts";
 import { watchEffect } from "vue";
 export function useWallet(callback) {
 	const store = useWalletStore();
