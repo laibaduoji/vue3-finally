@@ -10,7 +10,7 @@ import {
   getBalanceOf,
   getBalancesOf,
   tokenTransfer,
-} from "@/web3/evm/utils//token.ts";
+} from "@/web3/evm/utils/token.ts";
 
 import { tokensList, ToAddress } from "@/web3/evm/common/web3Config.ts";
 

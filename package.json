@@ -17,10 +17,13 @@
     "@moralisweb3/common-evm-utils": "^2.27.2",
     "@reown/appkit": "^1.6.8",
     "@reown/appkit-adapter-ethers": "^1.6.8",
+    "@tonconnect/ui": "^2.0.11",
     "axios": "^1.7.9",
+    "buffer": "^6.0.3",
     "ethers": "^6.13.5",
     "moralis": "^2.27.2",
     "pinia": "^2.3.0",
+    "tonweb": "^0.0.66",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
