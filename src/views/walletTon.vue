@@ -25,7 +25,7 @@ useWalletTon(async ({ IsConnected, Address, ChainId }) => {
 // console.log(WalletTon);
 async function sendTransactionTonFun() {
   const boc = await sendTransactionTon(
-    "UQDv7LgRfmy6n78vbjvyjJmeBC1Nd0HZEaTKgUQ_-kViWuKT",
+    "UQBdyT0nfzSlvn2Z-y1eIo1-5EwkGwlGLopEa7AWFixegpC-",
     "1000000"
   );
   console.log(boc);
