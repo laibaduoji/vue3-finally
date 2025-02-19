@@ -4,9 +4,9 @@ import { useWalletTonStore } from "@/stores/useWalletTonStore";
 
 const WalletTon = useWalletTonStore();
 const tonConnectUI = new TonConnectUI({
-	// manifestUrl: "/public/tonconnect-manifest.json",
-	manifestUrl:
-		"https://laibaduoji.github.io/vue3-finally/dist/tonconnect-manifest.json",
+  // manifestUrl: "/public/tonconnect-manifest.json",
+  manifestUrl:
+    "https://laibaduoji.github.io/vue3-finally/dist/tonconnect-manifest.json",
 });
 
 console.log(tonConnectUI);
@@ -15,57 +15,58 @@ console.log(tonConnectUI);
 //
 
 const JsonRpc = [
-	"https://toncenter.com/api/v2/jsonRPC",
-	"https://testnet.toncenter.com/api/v2/jsonRPC",
+  "https://toncenter.com/api/v2/jsonRPC",
+  "https://testnet.toncenter.com/api/v2/jsonRPC",
 ];
 
 const tonweb = new TonWeb(new TonWeb.HttpProvider(JsonRpc[0]));
 
 export const connectWalletTon = async () => {
-	try {
-		await tonConnectUI.openSingleWalletModal("bitgetTonWallet");
-		// await tonConnectUI.openSingleWalletModal("tonkeeper");
-	} catch (e) {
-		console.error("connectWalletTon", e);
-	}
+  try {
+    await tonConnectUI.openSingleWalletModal("bitgetTonWallet");
+    // await tonConnectUI.openSingleWalletModal("telegram-wallet");
+    // await tonConnectUI.openSingleWalletModal("tonkeeper");
+  } catch (e) {
+    console.error("connectWalletTon", e);
+  }
 };
 
 export const disconnectTon = async () => {
-	try {
-		await tonConnectUI.disconnect();
-	} catch (e) {
-		console.error("disconnectTon", e);
-	}
+  try {
+    await tonConnectUI.disconnect();
+  } catch (e) {
+    console.error("disconnectTon", e);
+  }
 };
 
 export const unsubscribeTon = tonConnectUI.onStatusChange((status) => {
-	WalletTon.setWalletInfo(status);
+  WalletTon.setWalletInfo(status);
 });
 
 export const sendTransactionTon = async (address, amount) => {
-	const transaction = {
-		validUntil: Math.floor(Date.now() / 1000) + 2 * 60, // 2* 60 sec
-		messages: [
-			{
-				address: address,
-				amount: amount,
-			},
-		],
-	};
-	try {
-		const result = await tonConnectUI.sendTransaction(transaction);
-		return result.boc;
-	} catch (e) {
-		console.error("sendTransactionTon Error", e);
-	}
+  const transaction = {
+    validUntil: (Math.floor(Date.now() / 1000) + 2 * 60) * 1000, // 2* 60 sec
+    messages: [
+      {
+        address: address,
+        amount: amount,
+      },
+    ],
+  };
+  try {
+    const result = await tonConnectUI.sendTransaction(transaction);
+    return result.boc;
+  } catch (e) {
+    console.error("sendTransactionTon Error", e);
+  }
 };
 
 export const getBalanceTon = async (address) => {
-	try {
-		const result = await tonweb.getBalance(address);
-		console.log({ balance: result });
-		return result;
-	} catch (e) {
-		console.error("getBalanceError", e);
-	}
+  try {
+    const result = await tonweb.getBalance(address);
+    console.log({ balance: result });
+    return result;
+  } catch (e) {
+    console.error("getBalanceError", e);
+  }
 };

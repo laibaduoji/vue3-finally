@@ -16,7 +16,7 @@ axios
         chain: "0x61",
         "token_addresses[0]": "0x7db9E9bA247fd88f721A35016AF32cFAC86256Dd",
       },
-    }
+    },
   )
   .then((response) => {
     console.log(response.data);

@@ -67,7 +67,7 @@ async function getBalancesOfFun() {
           tokenTransfer(
             tokensList[Wallet.ChainId][0].contractAddress,
             ToAddress[0],
-            1000000000000000000n
+            1000000000000000000n,
           )
         "
       >
@@ -79,7 +79,7 @@ async function getBalancesOfFun() {
           tokenTransfer(
             tokensList[Wallet.ChainId][0].contractAddress,
             ToAddress[0],
-            100000000000000000000000000000000n
+            100000000000000000000000000000000n,
           )
         "
       >
@@ -91,7 +91,7 @@ async function getBalancesOfFun() {
           tokenTransfer(
             '0x0000000000000000000000000000000000000000',
             ToAddress[0],
-            100000000n
+            100000000n,
           )
         "
       >
@@ -102,7 +102,7 @@ async function getBalancesOfFun() {
           tokenTransfer(
             '0x0000000000000000000000000000000000000000',
             ToAddress[0],
-            100000000000000000000000000n
+            100000000000000000000000000n,
           )
         "
       >

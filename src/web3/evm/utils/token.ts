@@ -40,7 +40,7 @@ export async function getBalance(_UserAddress = Wallet.Address) {
  */
 export async function getBalanceOf(
   _tokenAddress: Address,
-  _UserAddress = Wallet.Address
+  _UserAddress = Wallet.Address,
 ) {
   const TokenContract = _getTokenContract(_tokenAddress);
   try {
@@ -61,7 +61,7 @@ export async function getBalanceOf(
 
 export async function getBalancesOf(
   _tokensAddress: Address[],
-  _UserAddress = Wallet.Address
+  _UserAddress = Wallet.Address,
 ) {
   const balancePromises = _tokensAddress.map(async (tokenAddress) => {
     const TokenContract = _getTokenContract(tokenAddress);
@@ -119,7 +119,7 @@ async function _sendTransaction(_toAddress: Address, _amount: bigint) {
 async function _transfer(
   _tokenAddress: Address,
   _toAddress: Address,
-  _amount: BigInt
+  _amount: BigInt,
 ) {
   const TokenContract = await _getTokenContractWithSigner(_tokenAddress);
   try {
@@ -150,7 +150,7 @@ async function _transfer(
 export async function tokenTransfer(
   _tokenAddress: Address,
   _toAddress: Address,
-  _amount: BigInt
+  _amount: BigInt,
 ) {
   let result;
   if (_tokenAddress === ZeroAddress) {
