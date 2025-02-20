@@ -2,6 +2,13 @@
 
 <template>
   <div>
+    <div>
+      <button @click="$router.push('/wallet')">wallet</button>
+
+      <button @click="$router.push('/walletTon')">walletTon</button>
+
+      <button @click="$router.push('/walletSol')">walletSol</button>
+    </div>
     <router-view />
   </div>
 </template>
