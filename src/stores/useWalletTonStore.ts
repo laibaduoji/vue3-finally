@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
-export const useWalletTonStore = defineStore("wallet", () => {
+export const useWalletTonStore = defineStore("walletTon", () => {
   const WalletInfo = ref(null);
   function setWalletInfo(data: any) {
     WalletInfo.value = data;
