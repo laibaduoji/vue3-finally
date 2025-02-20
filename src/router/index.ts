@@ -8,7 +8,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      redirect: "/wallet",
+      redirect: "/walletSol",
     },
     {
       path: "/about",
@@ -32,19 +32,26 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/moralisweb3.vue"),
     },
-    {
+    /* {
       path: "/wallet",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/wallet.vue"),
-    },
+    },*/
     {
       path: "/walletton",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/walletTon.vue"),
+    },
+    {
+      path: "/walletsol",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/walletSol.vue"),
     },
   ],
 });
