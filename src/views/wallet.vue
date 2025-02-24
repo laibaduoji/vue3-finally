@@ -10,13 +10,14 @@ import {
   getBalanceOf,
   getBalancesOf,
   tokenTransfer,
+  getDecimals,
 } from "@/web3/evm/utils/token.ts";
 
 import { tokensList, ToAddress } from "@/web3/evm/common/web3Config.ts";
 
 // import { useWalletStore } from "@/store/index";
 import { useWalletStore } from "@/stores/useWalletStore";
-import { mainnet, bsc, bscTestnet } from "@reown/appkit/networks";
+import { mainnet, bsc, bscTestnet, arbitrum } from "@reown/appkit/networks";
 
 import { useWallet } from "@/composables/useWallet";
 const Wallet = useWalletStore();
@@ -30,7 +31,7 @@ useWallet(async ({ IsConnected, Address, ChainId }) => {
   if (IsConnected) {
     const balance = await getBalance();
     Wallet.setBalacne(balance);
-    getBalancesOfFun();
+    // getBalancesOfFun();
   } else {
     // 处理断开链接的逻辑
   }
@@ -53,15 +54,21 @@ async function getBalancesOfFun() {
       <button @click="disconnect">断开钱包</button>
       <button @click="switchNetwork(mainnet)">切换网络mainnet</button>
       <button @click="switchNetwork(bsc)">切换网络bsc</button>
+      <button @click="switchNetwork(arbitrum)">切换网络arbitrum</button>
       <button @click="switchNetwork(bscTestnet)">切换网络bscTestnet</button>
       <button @click="getBalance(Wallet.Address)">获取余额</button>
+      <button
+        @click="getDecimals(tokensList[Wallet.ChainId][0].contractAddress)"
+      >
+        getDecimals
+      </button>
       <button
         @click="getBalanceOf(tokensList[Wallet.ChainId][0].contractAddress)"
       >
         getBalanceOf
       </button>
       <button @click="getBalancesOfFun">getBalancesOf</button>
-
+      {{ tokensList[Wallet.ChainId][0].contractAddress }}
       <button
         @click="
           tokenTransfer(

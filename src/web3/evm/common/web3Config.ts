@@ -19,8 +19,12 @@ export const tokensList = {
   ],
   "56": [
     {
+      contractAddress: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+      symbol: "ETH",
+    },
+    {
       contractAddress: "0x55d398326f99059ff775485246999027b3197955",
-      symbol: " BSC-USD",
+      symbol: "BSC-USD",
     },
     {
       contractAddress: "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
@@ -35,7 +39,18 @@ export const tokensList = {
       symbol: "YTS 假地址",
     },*/
   ],
-  "1": [],
+  "1": [
+    {
+      contractAddress: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+      symbol: "ETH",
+    },
+  ],
+  "42161": [
+    {
+      contractAddress: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+      symbol: "ETH",
+    },
+  ],
 };
 
 export const ToAddress = [

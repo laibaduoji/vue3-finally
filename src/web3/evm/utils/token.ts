@@ -86,6 +86,21 @@ export async function getBalancesOf(
   return balances;
 }
 
+export async function getDecimals(_tokenAddress: Address) {
+  if (_tokenAddress === ZeroAddress) {
+    return 18;
+  }
+  const TokenContract = _getTokenContract(_tokenAddress);
+  try {
+    const result = await TokenContract.decimals();
+    console.log("getDecimals", result);
+    return result;
+  } catch (e) {
+    console.error("getDecimals Error", e);
+    return BigInt(0);
+  }
+}
+
 async function _sendTransaction(_toAddress: Address, _amount: bigint) {
   const signer = await getWalletProviderWithSigner();
   try {

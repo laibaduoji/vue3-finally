@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
-export const useWalletStore = defineStore("wallet", () => {
+export const useWalletStore = defineStore("walletEVM", () => {
   const AccountInfo = ref({});
   function setAccountInfo(data: any) {
     AccountInfo.value = data;
