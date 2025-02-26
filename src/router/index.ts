@@ -25,6 +25,27 @@ const router = createRouter({
       component: () => import("../views/QRcode.vue"),
     },
     {
+      path: "/vueqrcodereader",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/vueqrcodereader.vue"),
+    },
+    {
+      path: "/jsqr",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/jsqr.vue"),
+    },
+    {
+      path: "/qrscanner",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/qrscanner.vue"),
+    },
+    {
       path: "/moralisweb3",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
