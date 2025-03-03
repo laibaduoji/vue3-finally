@@ -8,6 +8,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      // redirect: "/web3auth",
     },
     {
       path: "/about",
@@ -72,6 +73,13 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/walletSol.vue"),
+    },
+    {
+      path: "/web3auth",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/web3auth.vue"),
     },
   ],
 });

@@ -3,27 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Google Sign-In Example</title>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script>
+      // 这里的 Client ID 来自于你在 Google Cloud Console 获取的 OAuth 2.0 客户端 ID
+      function startApp() {
+        gapi.load("auth2", function () {
+          gapi.auth2.init({
+            client_id:
+              "950401276095-mg9klbubkc3p74oo8krgo5c8ls88epjo.apps.googleusercontent.com",
+          });
+        });
+      }
+    </script>
   </head>
-  <body></body>
-  <script>
-    function sleep() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve("sleep end");
-        }, 1500);
-      });
-    }
+  <body onload="startApp()">
+    <!-- Google Sign-In button -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-    async function fun() {
-      console.log(1);
-      await sleep().then((res) => {
-        console.log(res);
-      });
+    <script>
+      // 用户成功登录时调用该方法
+      function onSignIn(googleUser) {
+        // 获取 Google 用户信息
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // 用户 ID
+        console.log("Full Name: " + profile.getName()); // 用户姓名
+        console.log("Given Name: " + profile.getGivenName()); // 名字
+        console.log("Family Name: " + profile.getFamilyName()); // 姓氏
+        console.log("Email: " + profile.getEmail()); // 用户邮箱
 
-      console.log(2);
-    }
+        // 获取 Google 用户的 ID Token，用于后端验证
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
 
-    fun();
-  </script>
+        // 你可以将 id_token 发送到服务器进行验证
+        sendTokenToServer(id_token);
+      }
+
+      // 将 ID Token 发送到服务器进行验证
+      function sendTokenToServer(id_token) {
+        fetch("/your-backend-endpoint", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id_token: id_token }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Successfully authenticated with Google:", data);
+          })
+          .catch((error) => {
+            console.error("Error during Google authentication:", error);
+          });
+      }
+    </script>
+  </body>
 </html>

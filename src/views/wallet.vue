@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import {
   connectWallet,
   disconnect,
@@ -29,8 +29,8 @@ useWallet(async ({ IsConnected, Address, ChainId }) => {
   // console.log(Address);
   // console.log(ChainId);
   if (IsConnected) {
-    const balance = await getBalance();
-    Wallet.setBalacne(balance);
+    // const balance = await getBalance();
+    // Wallet.setBalacne(balance);
     // getBalancesOfFun();
   } else {
     // 处理断开链接的逻辑
@@ -45,10 +45,26 @@ async function getBalancesOfFun() {
   console.log({ tokensAddress });
   tokensBalances.value = await getBalancesOf(tokensAddress);
 }
+
+let accounts = ref(null);
+let chainId = ref(null);
+
+onMounted(async () => {
+  accounts.value = await window.bitkeep.ethereum.request({
+    method: "eth_requestAccounts",
+  });
+  chainId.value = await window.bitkeep.ethereum.request({
+    method: "eth_chainId",
+  });
+});
 </script>
 
 <template>
   <div>
+    <div>
+      <div>{{ accounts }}</div>
+      <div>{{ chainId }}</div>
+    </div>
     <button @click="connectWallet" v-if="!Wallet.IsConnected">链接钱包</button>
     <template v-else>
       <button @click="disconnect">断开钱包</button>
