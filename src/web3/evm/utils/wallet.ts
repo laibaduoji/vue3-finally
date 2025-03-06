@@ -42,7 +42,7 @@ const modal = createAppKit({
     // "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96", // metamask
   ],
   excludeWalletIds: [
-    // "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
+    "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
   ],
   enableWalletConnect: false,
 });
