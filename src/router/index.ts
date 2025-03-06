@@ -8,7 +8,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      // redirect: "/web3auth",
+      redirect: "/wallet",
     },
     {
       path: "/about",
@@ -25,7 +25,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/QRcode.vue"),
     },
-    {
+    /*{
       path: "/vueqrcodereader",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -52,7 +52,7 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/moralisweb3.vue"),
-    },
+    },*/
     {
       path: "/wallet",
       // route level code-splitting
@@ -60,7 +60,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/wallet.vue"),
     },
-    {
+    /*{
       path: "/walletton",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -73,8 +73,8 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/walletSol.vue"),
-    },
-    {
+    },*/
+    /*{
       path: "/tronweb",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -87,7 +87,7 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/web3auth.vue"),
-    },
+    },*/
   ],
 });
 

@@ -6,8 +6,10 @@ let walletServicesPlugin = null;
   $("#sign-tx").hide();
 
   // IMP START - Dashboard Registration
+  // const clientId = "BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ"; // get your clientId from https://dashboard.web3auth.io
   const clientId =
-    "BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ"; // get your clientId from https://dashboard.web3auth.io
+    "BJxcR2BM7ZCOsYiF7bgkExJ2UCsi49hb9HIgRfmZ7lZ1RVq-dRS0tcU1nvLyD4o2j58pd2q3B7Ek-7V4kShv_QE"; // get your clientId from https://dashboard.web3auth.io
+
   // IMP END - Dashboard Registration
 
   // IMP START - Chain Config
@@ -34,7 +36,8 @@ let walletServicesPlugin = null;
   web3auth = new window.Modal.Web3Auth({
     clientId,
     privateKeyProvider,
-    web3AuthNetwork: "sapphire_mainnet",
+    // web3AuthNetwork: "sapphire_mainnet",
+    web3AuthNetwork: "sapphire_devnet",
   });
 
   // Add wallet service plugin

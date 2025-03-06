@@ -29,6 +29,7 @@ const getBalanceTron = async (address = tronWeb.defaultAddress.base58) => {
   }
 };
 const isConnectedTron = () => {
+  console.log(tronLink.isConnected());
   return tronLink.isConnected();
 };
 // console.log({ isConnectedTron: isConnectedTron() });
@@ -106,6 +107,7 @@ window.addEventListener("message", function (e) {
 <template>
   <div>
     <div>TronWeb</div>
+    <button @click="isConnectedTron">isConnectedTron</button>
     <button @click="connectWalletTron">connectWalletTron</button>
     <button @click="getBalanceTron()">getBalanceTron</button>
     <button
