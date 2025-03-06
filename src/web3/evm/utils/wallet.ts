@@ -37,11 +37,13 @@ const modal = createAppKit({
   },
   allWallets: "HIDE",
 
-  featuredWalletIds: [""],
+  includeWalletIds: [
+    "38f5d18bd8522c244bdd70cb4a68e0e718865155811c043f052fb9f1c51de662",
+  ],
 
   enableWalletConnect: false,
-  enableWalletGuide: false,
-  enableWallets: false,
+  enableWalletGuide: false, // 隐藏 底部引导文案;
+  // enableWallets: false,
   enableAuthLogger: false,
   enableEIP6963: false,
 });
