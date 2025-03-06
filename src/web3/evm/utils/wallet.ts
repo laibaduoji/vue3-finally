@@ -42,9 +42,8 @@ const modal = createAppKit({
   ],
 
   enableWalletConnect: false,
-  enableWalletGuide: false, // 隐藏 底部引导文案;
   // enableWallets: false,
-  enableAuthLogger: false,
+  // enableAuthLogger: true,
   enableEIP6963: false,
 });
 
