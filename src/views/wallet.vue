@@ -66,7 +66,7 @@ onMounted(async () => {
       <div>{{ chainId }}</div>
     </div>
     <button @click="connectWallet" v-if="!Wallet.IsConnected">
-      链接钱包16
+      链接钱包17
     </button>
     <template v-else>
       <button @click="disconnect">断开钱包</button>
