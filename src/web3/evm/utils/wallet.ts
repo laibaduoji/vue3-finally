@@ -40,6 +40,10 @@ const modal = createAppKit({
   featuredWalletIds: [""],
 
   enableWalletConnect: false,
+  enableWalletGuide: false,
+  enableWallets: false,
+  enableAuthLogger: false,
+  enableEIP6963: false,
 });
 
 export const connectWallet = () => {
