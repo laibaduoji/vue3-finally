@@ -38,7 +38,7 @@ const modal = createAppKit({
   allWallets: "HIDE",
 
   includeWalletIds: [
-    "38f5d18bd8522c244bdd70cb4a68e0e718865155811c043f052fb9f1c51de662",
+    // "38f5d18bd8522c244bdd70cb4a68e0e718865155811c043f052fb9f1c51de662",
   ],
 
   enableWalletConnect: false,
