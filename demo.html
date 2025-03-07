@@ -3,60 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Google Sign-In Example</title>
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <script>
-      // 这里的 Client ID 来自于你在 Google Cloud Console 获取的 OAuth 2.0 客户端 ID
-      function startApp() {
-        gapi.load("auth2", function () {
-          gapi.auth2.init({
-            client_id:
-              "950401276095-mg9klbubkc3p74oo8krgo5c8ls88epjo.apps.googleusercontent.com",
-          });
-        });
+    <title>Document</title>
+    <style>
+      button {
+        color: red;
       }
-    </script>
+    </style>
   </head>
-  <body onload="startApp()">
-    <!-- Google Sign-In button -->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <script>
-      // 用户成功登录时调用该方法
-      function onSignIn(googleUser) {
-        // 获取 Google 用户信息
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // 用户 ID
-        console.log("Full Name: " + profile.getName()); // 用户姓名
-        console.log("Given Name: " + profile.getGivenName()); // 名字
-        console.log("Family Name: " + profile.getFamilyName()); // 姓氏
-        console.log("Email: " + profile.getEmail()); // 用户邮箱
-
-        // 获取 Google 用户的 ID Token，用于后端验证
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-
-        // 你可以将 id_token 发送到服务器进行验证
-        sendTokenToServer(id_token);
-      }
-
-      // 将 ID Token 发送到服务器进行验证
-      function sendTokenToServer(id_token) {
-        fetch("/your-backend-endpoint", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id_token: id_token }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Successfully authenticated with Google:", data);
-          })
-          .catch((error) => {
-            console.error("Error during Google authentication:", error);
-          });
-      }
-    </script>
+  <body>
+    <my-button></my-button>
   </body>
+  <script>
+    class MyButton extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }); // 创建 Shadow DOM
+        this.shadowRoot.innerHTML = `
+      <style>
+        button {
+          background: blue;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+        }
+      </style>
+      <button>点击我</button>
+    `;
+      }
+    }
+
+    // 注册自定义元素
+    customElements.define("my-button", MyButton);
+  </script>
 </html>

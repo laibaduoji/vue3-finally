@@ -19,6 +19,7 @@
     "@reown/appkit": "^1.6.8",
     "@reown/appkit-adapter-ethers": "^1.6.8",
     "@reown/appkit-adapter-solana": "^1.6.8",
+    "@reown/appkit-wallet-button": "^1.6.9",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.98.0",
     "@tonconnect/ui": "^2.0.11",

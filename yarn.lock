@@ -1472,6 +1472,15 @@
     dayjs "1.11.10"
     viem ">=2.23.0"
 
+"@reown/appkit-common@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-common/-/appkit-common-1.6.9.tgz#ae5b44ee4250ba5eafa792a72c7d3f7e85732923"
+  integrity sha512-2wWlE4NK7yDybrV4JQm6budJUlpVACs6It2A+E4Ol+s2lHcDCIKpq7XX1kX6AdWKig5AlBEz9dpjtWV3npB9ZQ==
+  dependencies:
+    big.js "6.2.2"
+    dayjs "1.11.10"
+    viem ">=2.23.0"
+
 "@reown/appkit-core@1.6.8":
   version "1.6.8"
   resolved "https://registry.npmjs.org/@reown/appkit-core/-/appkit-core-1.6.8.tgz#85cc3855b083d3e14e272a2b572717f50de56ced"
@@ -1483,10 +1492,28 @@
     valtio "1.13.2"
     viem ">=2.23"
 
+"@reown/appkit-core@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-core/-/appkit-core-1.6.9.tgz#600292c9c6046cdcf13b2e3a945737ebbd747f06"
+  integrity sha512-gy39L+6/R7XETjfsHyAsktQAAyTMTyDbDc91+oU1oYkyKXe8Yt/V3iIGzCURzZ0d/ir5f9fRI0TqaJkuZWC28A==
+  dependencies:
+    "@reown/appkit-common" "1.6.9"
+    "@reown/appkit-wallet" "1.6.9"
+    "@walletconnect/universal-provider" "2.18.0"
+    valtio "1.13.2"
+    viem ">=2.23"
+
 "@reown/appkit-polyfills@1.6.8":
   version "1.6.8"
   resolved "https://registry.npmjs.org/@reown/appkit-polyfills/-/appkit-polyfills-1.6.8.tgz#0b301aa231cb0ad246efbe236d3d26718e88bccf"
   integrity sha512-Iw1IEloHDlv2StRFnqZhA1/Q8DLs4OUtDBAp0AoAgDfz2EkCdUzFiC464I5xOnmSqUwyGm3dQGObBdq7aesPkA==
+  dependencies:
+    buffer "6.0.3"
+
+"@reown/appkit-polyfills@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-polyfills/-/appkit-polyfills-1.6.9.tgz#fbc2fccd43675b8116209c4d7a0c814bec784089"
+  integrity sha512-3VZiCmp1a0f3wtsIUSTd+DSO2h2IS7KGb8UA7niqozzneUBBdT2pLGUNJ6sLGUjKmvbTW5q4uVoCJ0g5AGSctA==
   dependencies:
     buffer "6.0.3"
 
@@ -1510,6 +1537,14 @@
     lit "3.1.0"
     qrcode "1.5.3"
 
+"@reown/appkit-ui@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-ui/-/appkit-ui-1.6.9.tgz#038c1fc4c93d196a48eb5e7dcc450f1aa8f81aac"
+  integrity sha512-eKvum8bVkEqKAnu1fEvdtkH8UA6XK/rc5pF+sj9b7vOQtVUMCqTYVN4vI2czA9fhvZ1M6WQ/v5owWSf3RCQquQ==
+  dependencies:
+    lit "3.1.0"
+    qrcode "1.5.3"
+
 "@reown/appkit-utils@1.6.8":
   version "1.6.8"
   resolved "https://registry.npmjs.org/@reown/appkit-utils/-/appkit-utils-1.6.8.tgz#64fdd1ca60082cbc475de765fc264973a635f8fc"
@@ -1524,6 +1559,32 @@
     valtio "1.13.2"
     viem ">=2.23.0"
 
+"@reown/appkit-utils@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-utils/-/appkit-utils-1.6.9.tgz#fa10a9d840c2c7b9883a9c5e334a09a527e16809"
+  integrity sha512-ZG6Yt4l7AY4wD6tIpPbn0aUZXXI6/TWzDzJ9oTHw4QdK+J8LCR4H5UypUfX4o0+P8d6f06ECrgnMH6JrRc/fHA==
+  dependencies:
+    "@reown/appkit-common" "1.6.9"
+    "@reown/appkit-core" "1.6.9"
+    "@reown/appkit-polyfills" "1.6.9"
+    "@reown/appkit-wallet" "1.6.9"
+    "@walletconnect/logger" "2.1.2"
+    "@walletconnect/universal-provider" "2.18.0"
+    valtio "1.13.2"
+    viem ">=2.23.0"
+
+"@reown/appkit-wallet-button@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-wallet-button/-/appkit-wallet-button-1.6.9.tgz#707c075f9e6bca9f79fef26adefcdce68b7c7673"
+  integrity sha512-GF79z7R8Ae9WgzPBs3ai2ArezSKsqxkxclHmyYhbuM1xdBwCZDBfV7iDCm24MRmi/c+jmk4I+sahlQqmNzGRiA==
+  dependencies:
+    "@reown/appkit-common" "1.6.9"
+    "@reown/appkit-core" "1.6.9"
+    "@reown/appkit-ui" "1.6.9"
+    "@reown/appkit-utils" "1.6.9"
+    lit "3.1.0"
+    valtio "1.13.2"
+
 "@reown/appkit-wallet@1.6.8":
   version "1.6.8"
   resolved "https://registry.npmjs.org/@reown/appkit-wallet/-/appkit-wallet-1.6.8.tgz#a661a624845a79213757220d4c6b4dc0acc01c47"
@@ -1531,6 +1592,16 @@
   dependencies:
     "@reown/appkit-common" "1.6.8"
     "@reown/appkit-polyfills" "1.6.8"
+    "@walletconnect/logger" "2.1.2"
+    zod "3.22.4"
+
+"@reown/appkit-wallet@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmjs.org/@reown/appkit-wallet/-/appkit-wallet-1.6.9.tgz#e59fc6644fd352450892eb22048f77db412eacda"
+  integrity sha512-Lm2Z9UI7ittxTAMNgdnigogK8Rn/FDypFAWyGiGNZbLyW0lmx0XP/i1syXRm8lMx2r5OXT58q1x66SJl6PFcvg==
+  dependencies:
+    "@reown/appkit-common" "1.6.9"
+    "@reown/appkit-polyfills" "1.6.9"
     "@walletconnect/logger" "2.1.2"
     zod "3.22.4"
 

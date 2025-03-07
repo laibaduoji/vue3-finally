@@ -21,6 +21,15 @@ const metadata = {
   icons: ["https://qr.cryptogo.com/favicon1.ico"],
 };
 
+const Wallets = {
+  metamask: "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
+  trustwallet:
+    "4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0",
+  bitgetwallet:
+    "38f5d18bd8522c244bdd70cb4a68e0e718865155811c043f052fb9f1c51de662",
+  okx: "971e689d0a5be527bac79629b4ee9b925e82208e5168b733496a09c0faed0709",
+};
+
 // 3. Create a AppKit instance
 const modal = createAppKit({
   adapters: [new EthersAdapter()],
@@ -35,6 +44,7 @@ const modal = createAppKit({
     emailShowWallets: false,
     swap: false,
   },
+
   allWallets: "HIDE",
   featuredWalletIds: [],
   includeWalletIds: [],
@@ -42,13 +52,55 @@ const modal = createAppKit({
   enableWalletConnect: false,
   // enableWallets: false,
   // enableAuthLogger: true,
-  enableEIP6963: false,
+  // enableEIP6963: false,
 });
 
 export const connectWallet = () => {
   const { open } = useAppKit();
   open({
     view: "Connect",
+  }).finally(() => {
+    (() => {
+      function queryShadowElement(root, selector) {
+        if (!root) return null;
+
+        // 先尝试在当前 root 里查找
+        let element = root.querySelector(selector);
+        if (element) return element;
+
+        // 递归遍历所有 shadow DOM
+        const shadowHosts = root.querySelectorAll("*");
+        for (let host of shadowHosts) {
+          if (host.shadowRoot) {
+            element = queryShadowElement(host.shadowRoot, selector);
+            if (element) return element;
+          }
+        }
+
+        return null;
+      }
+
+      function findAndHideInjectedWidget(retries = 5, delay = 10) {
+        const injectedWidget = queryShadowElement(
+          document,
+          "w3m-connect-injected-widget",
+        );
+
+        if (injectedWidget) {
+          console.log("找到 injected widget:", injectedWidget);
+          injectedWidget.style.display = "none";
+        } else if (retries > 1) {
+          setTimeout(() => {
+            findAndHideInjectedWidget(retries - 1, delay);
+          }, delay);
+        } else {
+          console.log("未找到 injected widget，重试次数已用完");
+        }
+      }
+
+      // 立即执行
+      findAndHideInjectedWidget();
+    })();
   });
 };
 export const disconnect = () => {

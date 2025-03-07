@@ -20,6 +20,7 @@ import { useWalletStore } from "@/stores/useWalletStore";
 import { mainnet, bsc, bscTestnet, arbitrum } from "@reown/appkit/networks";
 
 import { useWallet } from "@/composables/useWallet";
+
 const Wallet = useWalletStore();
 console.log(Wallet);
 
@@ -61,10 +62,10 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div>
+    <!--     <div>
       <div>{{ accounts }}</div>
       <div>{{ chainId }}</div>
-    </div>
+    </div> -->
     <button @click="connectWallet" v-if="!Wallet.IsConnected">
       链接钱包17
     </button>
