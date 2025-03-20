@@ -10,6 +10,13 @@ const tonConnectUI = new TonConnectUI({
 });
 
 console.log(tonConnectUI);
+tonConnectUI.uiOptions = {
+  twaReturnUrl: "https://t.me/cryptogo_pay_bot",
+};
+
+console.log(`%c${"12313123"}`, "font-size:30px;color:#aa5ff0");
+console.log(tonConnectUI);
+console.log(tonConnectUI.uiOptions);
 // const tonweb = new TonWeb();
 // const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC', {apiKey: 'YOUR_MAINNET_TONCENTER_API_KEY'}));
 //
@@ -23,9 +30,12 @@ const tonweb = new TonWeb(new TonWeb.HttpProvider(JsonRpc[0]));
 
 export const connectWalletTon = async () => {
   try {
-    await tonConnectUI.openSingleWalletModal("bitgetTonWallet");
+    // await tonConnectUI.openSingleWalletModal("bitgetTonWallet");
+    await tonConnectUI.connectWallet();
     // await tonConnectUI.openSingleWalletModal("telegram-wallet");
     // await tonConnectUI.openSingleWalletModal("tonkeeper");
+
+    // window.open("https://t.me/cryptogo_pay_bot");
   } catch (e) {
     console.error("connectWalletTon", e);
   }

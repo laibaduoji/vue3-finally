@@ -91,6 +91,8 @@ export async function getDecimals(_tokenAddress: Address) {
     return 18;
   }
   const TokenContract = _getTokenContract(_tokenAddress);
+  console.log(TokenContract);
+
   try {
     const result = await TokenContract.decimals();
     console.log("getDecimals", result);
@@ -100,6 +102,12 @@ export async function getDecimals(_tokenAddress: Address) {
     return BigInt(0);
   }
 }
+
+setTimeout(() => {
+  console.log(`%c${"getDecimals"}`, "font-size:30px;color:#aa5ff0");
+  console.log();
+  getDecimals("0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9");
+}, 3000);
 
 async function _sendTransaction(_toAddress: Address, _amount: bigint) {
   const signer = await getWalletProviderWithSigner();

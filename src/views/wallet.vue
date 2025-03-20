@@ -51,12 +51,12 @@ let accounts = ref(null);
 let chainId = ref(null);
 
 onMounted(async () => {
-  accounts.value = await window.bitkeep.ethereum.request({
+  /* accounts.value = await window.bitkeep.ethereum.request({
     method: "eth_requestAccounts",
   });
   chainId.value = await window.bitkeep.ethereum.request({
     method: "eth_chainId",
-  });
+  });*/
 });
 </script>
 
