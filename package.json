@@ -22,7 +22,7 @@
     "@reown/appkit-wallet-button": "^1.6.9",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.98.0",
-    "@tonconnect/ui": "^2.0.11",
+    "@tonconnect/ui": "^2.0.09",
     "@web3auth/base": "^9.6.0",
     "@web3auth/default-evm-adapter": "^9.6.0",
     "@web3auth/ethereum-provider": "^9.6.0",

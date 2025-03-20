@@ -10,9 +10,9 @@ const tonConnectUI = new TonConnectUI({
 });
 
 console.log(tonConnectUI);
-tonConnectUI.uiOptions = {
+/*tonConnectUI.uiOptions = {
   twaReturnUrl: "https://t.me/cryptogo_pay_bot",
-};
+};*/
 
 console.log(`%c${"12313123"}`, "font-size:30px;color:#aa5ff0");
 console.log(tonConnectUI);
