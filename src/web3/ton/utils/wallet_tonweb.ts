@@ -88,15 +88,19 @@ export const getTokenBalanceByTonWeb = async (
   }
 };
 
-export const getJettonTx = async (recipientAddress, amount) => {
+export const getJettonTx = async (
+  recipientAddress,
+  amount,
+  responseAddress = walletInfo.value.account.address,
+) => {
   const transferBody = new TonWeb.boc.Cell();
   transferBody.bits.writeUint(0xf8a7ea5, 32); // transfer() 方法的操作码
   transferBody.bits.writeUint(0, 64); // query_id
   transferBody.bits.writeCoins(amount); // 转账金额
   transferBody.bits.writeAddress(new Address(recipientAddress)); // 接收者地址
-  transferBody.bits.writeAddress(new Address(recipientAddress)); // 接收者地址
+  transferBody.bits.writeAddress(new Address(responseAddress)); // 这个地址会收到 Jetton Transfer 的回执（通常设置为 sender）。
   transferBody.bits.writeBit(false); // null custom_payload
-  transferBody.bits.writeCoins(0); // custom_payload
+  transferBody.bits.writeCoins(0); //forwardAmount 是 Jetton 交易转发到 toAddress 的 TON 费用（通常为 0）。
   transferBody.bits.writeBit(false); // false Either for empty payload
   return {
     payload: TonWeb.utils.bytesToBase64(await transferBody.toBoc(false)), // 交易数据
