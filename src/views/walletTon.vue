@@ -4,6 +4,7 @@ import {
   disconnectTon,
   getBalanceTon,
   sendTransactionTon,
+  sendTransactionUSDT,
 } from "@/web3/ton/utils/wallet.ts";
 import { useWalletTonStore } from "@/stores/useWalletTonStore";
 
@@ -11,7 +12,7 @@ import { useWalletTon } from "@/composables/useWalletTon";
 
 const WalletTon = useWalletTonStore();
 
-useWalletTon(async ({ IsConnected, Address, ChainId }) => {
+/*useWalletTon(async ({ IsConnected, Address, ChainId }) => {
   console.log(`%c${"useWalleTon"}`, "font-size:30px;color:#aa5ff0");
   console.log(Address);
   console.log(ChainId);
@@ -21,13 +22,19 @@ useWalletTon(async ({ IsConnected, Address, ChainId }) => {
   } else {
     // 处理断开链接的逻辑
   }
-});
+});*/
 // console.log(WalletTon);
 async function sendTransactionTonFun() {
   const boc = await sendTransactionTon(
-    // "UQBdyT0nfzSlvn2Z-y1eIo1-5EwkGwlGLopEa7AWFixegpC-",
-    "0:19bd9f9474e54d9e260234c9b376384bc8f7754869eb94c84696da57eef2c79a",
+    "0:df51b59bdcb59428f4e324862364fc331149af6c9a7c0c5852c12a25521d98d0",
     "1000000",
+  );
+  console.log(boc);
+}
+async function sendTransactionUSDTFun() {
+  const boc = await sendTransactionUSDT(
+    "0:df51b59bdcb59428f4e324862364fc331149af6c9a7c0c5852c12a25521d98d0",
+    "0.0003",
   );
   console.log(boc);
 }
@@ -47,6 +54,7 @@ async function sendTransactionTonFun() {
     </template>
 
     <button @click="sendTransactionTonFun">Transfer</button>
+    <button @click="sendTransactionUSDTFun">Transfer USDT</button>
     <div></div>
     <button>{{ WalletTon.Address }}</button>
     <div></div>
