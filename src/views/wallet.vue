@@ -93,7 +93,7 @@ onMounted(async () => {
           tokenTransfer(
             tokensList[Wallet.ChainId][0].contractAddress,
             ToAddress[0],
-            1000000000000000000n,
+            1000000000000n,
           )
         "
       >

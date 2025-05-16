@@ -22,6 +22,7 @@ export const tokensList = {
       contractAddress: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
       symbol: "ETH",
     },
+
     {
       contractAddress: "0x55d398326f99059ff775485246999027b3197955",
       symbol: "BSC-USD",

@@ -8,8 +8,9 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      redirect: "/walletton",
+      // redirect: "/walletton",
     },
+
     {
       path: "/about",
       name: "about",
@@ -17,6 +18,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue"),
+    },
+    {
+      path: "/slot",
+      name: "slot",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/SlotView.vue"),
     },
     {
       path: "/qrcode",
@@ -53,13 +62,13 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/moralisweb3.vue"),
     },*/
-    /* {
+    {
       path: "/wallet",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/wallet.vue"),
-    },*/
+    },
     /* {
       path: "/wallet-button",
       // route level code-splitting

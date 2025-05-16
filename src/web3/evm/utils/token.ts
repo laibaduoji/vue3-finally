@@ -153,7 +153,14 @@ async function _transfer(
     };
   } catch (e) {
     console.dir(e);
-    const TokenBalance = await getBalanceOf(_tokenAddress);
+    return {
+      success: false,
+      transactionHash: "0x",
+      shortMessage:
+        e?.error?.message || e.shortMessage || ErrorMessage.unknownError,
+    };
+
+    /*    const TokenBalance = await getBalanceOf(_tokenAddress);
     if (TokenBalance < _amount) {
       return {
         success: false,
@@ -166,7 +173,7 @@ async function _transfer(
         transactionHash: "0x",
         shortMessage: e.shortMessage || ErrorMessage.unknownError,
       };
-    }
+    }*/
   }
 }
 
